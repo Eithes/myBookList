@@ -1,7 +1,8 @@
 class Http {
 
   async get(url) {
-     const response = await fetch(url);
+     const response = await fetch(url);     
+     if (!response.ok) throw new Error(response.error);
      const resData = await response.json();
      return resData;
   }
@@ -14,6 +15,7 @@ class Http {
         },
         body: JSON.stringify(data)
     });
+    if (!response.ok) throw new Error(response.error);
     const resData = await response.json();
     return resData; 
   }
@@ -26,6 +28,7 @@ class Http {
           }, 
         body: JSON.stringify(data)
     });
+    if (!response.ok) throw new Error(response.error);
     const resData = await response.json();
     return resData;        
   }
@@ -37,6 +40,7 @@ class Http {
              'Content-type': 'application/json'
           }
     });
+    if (!response.ok) throw new Error(response.error);
     const resData = await response.json();
     return 'post deleted';             
    }
